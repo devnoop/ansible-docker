@@ -321,6 +321,17 @@ docker__ferment_wrapper: '{{ (ansible_local.root.lib
                               else "/usr/local/lib") + "/docker-ferment-wrapper" }}'
                                                                    # ]]]
                                                                    # ]]]
+
+# Docker-Compose installation [[[
+# --------------------------------
+
+# .. envvar:: docker__docker_compose [[[
+#
+# Enable or disable 'docker-compose' support.
+docker__docker_compose: True
+                                                                   # ]]]
+                                                                   # ]]]
+
 # Configuration of other Ansible roles [[[
 # ----------------------------------------
 

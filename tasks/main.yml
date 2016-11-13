@@ -44,11 +44,15 @@
     - '{{ docker__base_packages }}'
     - '{{ docker__packages }}'
 
-- name: Install ferment generator
+- name: Install required pip packages
   pip:
-    name: 'ferment'
-    state: 'present'
-  when: docker__ferment|d() | bool
+    name: '{{ item }}'
+    state: 'latest'
+  with_flattened:
+    - '{{ "ferment" if docker__ferment|d() | bool }}'
+    - '{{ "pip" if docker__docker_compose|d() | bool }}'
+    - '{{ "wheel" if docker__docker_compose|d() | bool }}'
+    - '{{ "docker-compose" if docker__docker_compose|d() | bool }}'
 
 - name: Install ferment wrapper script
   template:
